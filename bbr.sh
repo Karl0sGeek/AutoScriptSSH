@@ -1,5 +1,5 @@
 #!/bin/bash
-#Optimasi Speed By Vaksin
+#Optimization Speed By Karlos Geek
 Add_To_New_Line(){
 	if [ "$(tail -n1 $1 | wc -l)" == "0"  ];then
 		echo "" >> "$1"
@@ -15,29 +15,29 @@ Check_And_Add_Line(){
 
 Install_BBR(){
 echo "#############################################"
-echo "Install TCP_BBR..."
+echo "Instalando TCP_BBR..."
 if [ -n "$(lsmod | grep bbr)" ];then
-echo "TCP_BBR sudah diinstall."
+echo "TCP_BBR Instalacion Exitosa."
 echo "#############################################"
 return 1
 fi
-echo "Mulai menginstall TCP_BBR..."
+echo "Empiece a instalar TCP_BBR..."
 modprobe tcp_bbr
 Add_To_New_Line "/etc/modules-load.d/modules.conf" "tcp_bbr"
 Add_To_New_Line "/etc/sysctl.conf" "net.core.default_qdisc = fq"
 Add_To_New_Line "/etc/sysctl.conf" "net.ipv4.tcp_congestion_control = bbr"
 sysctl -p
 if [ -n "$(sysctl net.ipv4.tcp_available_congestion_control | grep bbr)" ] && [ -n "$(sysctl net.ipv4.tcp_congestion_control | grep bbr)" ] && [ -n "$(lsmod | grep "tcp_bbr")" ];then
-	echo "TCP_BBR Install Success."
+	echo "TCP_BBR Instalacion Exitosa."
 else
-	echo "Gagal menginstall TCP_BBR."
+	echo "Fallo la instalación TCP_BBR."
 fi
 echo "#############################################"
 }
 
 Optimize_Parameters(){
 echo "#############################################"
-echo "Optimasi Parameters..."
+echo "Optimización de parámetros..."
 Check_And_Add_Line "/etc/security/limits.conf" "* soft nofile 51200"
 Check_And_Add_Line "/etc/security/limits.conf" "* hard nofile 51200"
 Check_And_Add_Line "/etc/security/limits.conf" "root soft nofile 51200"
@@ -59,7 +59,7 @@ Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_mem = 25600 51200 102400"
 Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_rmem = 4096 87380 67108864"
 Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_wmem = 4096 65536 67108864"
 Check_And_Add_Line "/etc/sysctl.conf" "net.ipv4.tcp_mtu_probing = 1"
-echo "Optimasi Parameters Selesai."
+echo "Optimización de parámetros realizada."
 echo "#############################################"
 }
 Install_BBR

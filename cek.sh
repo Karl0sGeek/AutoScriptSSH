@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script by : Vaksin
+# Script by : Karlos Geek
 clear
 echo " "
 echo " "
@@ -72,5 +72,5 @@ echo " Multi Login = kill "
 echo " Cara pakai : kill [nombor PID] "
 echo "-------------------------------------"
 
-echo " By Vaksin"
+echo " By Karlos Geek"
 echo "";

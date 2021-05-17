@@ -8,8 +8,8 @@ else
 SERVER_PUB_IP=$IP
 fi
 	echo ""
-	echo "Tell me a name for the client."
-	echo "Use one word only, no special characters."
+	echo "Dime el nombre del cliente."
+	echo "Utilice solo una palabra, sin caracteres especiales."
 
 	until [[ ${CLIENT_NAME} =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 		read -rp "Client name: " -e CLIENT_NAME
@@ -17,7 +17,7 @@ fi
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
 			echo ""
-			echo "A client with the specified name was already created, please choose another name."
+			echo "Ya se creó un cliente con el nombre especificado, elija otro nombre."
 			exit 1
 		fi
 	done
@@ -79,5 +79,5 @@ AllowedIPs = $CLIENT_ADDRESS/32" >>"/etc/wireguard/$SERVER_WG_NIC.conf"
 	echo -e "==============================="
 	echo -e "Expired On     : $exp"
 	echo -e ""
-	echo -e "By Vaksin"
+	echo -e "By Karlos Geek"
 	rm -f /root/wg0-client-$CLIENT_NAME.conf

@@ -8,7 +8,7 @@ x=1
 echo "-------------------------------";
 echo "---=[ Wireguard User Login ]=---";
 echo "-------------------------------";
-echo "Name  Remote IP Virtual IP Bytes Received Bytes Sent Last Seen "
+echo "Nombre IP remota IP virtual Bytes recibidos Bytes enviados por última vez vistos "
 for akun in "${data[@]}"
 do
 pub=$(cat /etc/wireguard/wg0.conf | grep PublicKey | awk '{ print $3 }' | tr '\n' ' ' | awk '{print $'"$x"'}')
@@ -17,7 +17,7 @@ x=$(( "$x" + 1 ))
 done
 CLIENTS_FILE="/etc/wireguard/clients.txt"
 if [ ! -s "$CLIENTS_FILE" ]; then
-    echo "::: There are no clients to list"
+    echo "::: No hay clientes para listar"
     exit 0
 fi
 listClients(){
@@ -62,5 +62,5 @@ listClients(){
 }
 listClients
 echo "-------------------------------";
-echo -e "By Vaksin"
+echo -e "By Karlos Geek"
 

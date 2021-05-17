@@ -4,7 +4,7 @@ clear
 echo -e ""
 echo -e "======================================"
 echo -e ""
-echo -e "    AutoScriptVPS by  Vaksin      "
+echo -e "    AutoScriptVPS by Karlos Geek      "
 echo -e ""
 echo -e "    [1] Restart All Services"
 echo -e "    [2] Restart OpenSSH"

@@ -57,8 +57,8 @@ echo -e " Status $sts"
 echo -e "  1. Install Webmin"
 echo -e "  2. Restart Webmin"
 echo -e "  3. Uninstall Webmin"
-echo -e " Press CTRL+C to return"
-read -rp " Please Enter The Correct Number : " -e num
+echo -e " Presione CTRL + C para regresar"
+read -rp " Ingrese el Número Correcto : " -e num
 if [[ "$num" = "1" ]]; then
 install
 elif [[ "$num" = "2" ]]; then
@@ -67,7 +67,7 @@ elif [[ "$num" = "3" ]]; then
 uninstall
 else
 clear
-echo " You Entered The Wrong Number"
+echo " Ingresó el Número Equivocado"
 menu
 fi
 

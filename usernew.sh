@@ -10,7 +10,7 @@ read -p "Password : " Pass
 read -p "Expired (hari): " masaaktif
 
 IP=$(wget -qO- icanhazip.com);
-echo Script AutoCreate Akun SSH dan OpenVPN by Vaksin
+echo Script Autocreacion de Cuenta SSH y OpenVPN de Karlos Geek
 sleep 1
 echo Ping Host
 echo Cek Hak Akses...
@@ -27,8 +27,8 @@ useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo -e ""
-echo -e "Terimakasih Telah Menggunakan Layanan Kami"
-echo -e "Informasi Akun SSH & OpenVPN"
+echo -e "Gracias por usar nuestros servicios"
+echo -e "Información de la cuenta SSH y OpenVPN"
 echo -e "Username       : $Login "
 echo -e "Password       : $Pass"
 echo -e "==============================="
@@ -43,5 +43,5 @@ echo -e "OpenVPN        : UDP 2200 http://$IP:81/client-udp-2200.ovpn"
 echo -e "OpenVPN        : SSL 992 http://$IP:81/client-tcp-ssl.ovpn"
 echo -e "badvpn         : 7100, 7200, 7300"
 echo -e "==============================="
-echo -e "Aktif Sampai   : $exp"
-echo -e "Script by Vaksin"
+echo -e "Activo Hasta   : $exp"
+echo -e "Script by Karlos Geek"

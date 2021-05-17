@@ -2,7 +2,7 @@
 # Debian 9 & 10 64bit
 # Ubuntu 18.04 & 20.04 bit
 # Centos 7 & 8 64bit 
-# By Vaksin
+# By Karlos Geek
 # ==================================================
 
 
@@ -23,7 +23,7 @@ if [[ -e /etc/wireguard/params ]]; then
 	exit 1
 fi
 
-echo -e "${Info} Wireguard VPS AutoScript by Vaksin"
+echo -e "${Info} Wireguard VPS AutoScript by Karlos Geek"
 # Detect public IPv4 address and pre-fill for the user
 
 # Detect public interface and pre-fill for the user
@@ -89,11 +89,11 @@ WG_RUNNING=$?
 
 # Tambahan
 cd /usr/bin
-wget -O addwg "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/addwg.sh"
-wget -O delwg "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/delwg.sh"
-wget -O cekwg "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/cekwg.sh"
-wget -O xp-wg "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/xp-wg.sh"
-wget -O renewwg "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/renewwg.sh"
+wget -O addwg "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/addwg.sh"
+wget -O delwg "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/delwg.sh"
+wget -O cekwg "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/cekwg.sh"
+wget -O xp-wg "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/xp-wg.sh"
+wget -O renewwg "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/renewwg.sh"
 chmod +x addwg
 chmod +x delwg
 chmod +x cekwg

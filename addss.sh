@@ -13,7 +13,7 @@ else
 http="$((lastport2+1))"
 fi
 echo ""
-echo "Masukkan password"
+echo "Introduce la contraseña"
 
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 		read -rp "Password: " -e user
@@ -21,7 +21,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
 			echo ""
-			echo "Akun sudah ada, silahkan masukkan password lain."
+			echo "La cuenta ya existe, ingrese otra contraseña."
 			exit 1
 		fi
 	done
@@ -89,4 +89,4 @@ clear
 	echo -e "==========================="
 	echo -e "Link OBFS HTTP : $linkss2"
 	echo -e "==========================="
-	echo -e "Script by Vaksin"
+	echo -e "Script by Karlos Geek"

@@ -1,5 +1,5 @@
 #!/bin/bash
-# By Vaksin
+# By Karlos Geek
 # 
 # ==================================================
 
@@ -21,7 +21,7 @@ commonname=Vaksin.xyz
 email=admin@Vaksin.xyz
 
 # simple password minimal
-wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/syntax-er0r/AutoScriptSSH/main/password"
+wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/password"
 chmod +x /etc/pam.d/common-password
 
 # go to root
@@ -86,22 +86,22 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
-echo "echo by LostServer" >> .profile
+echo "echo by Karlos Geek" >> .profile
 
 # install webserver
 apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup by LostServer</pre>" > /home/vps/public_html/index.html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/vps.conf"
+echo "<pre>Setup by KarlosGeek</pre>" > /home/vps/public_html/index.html
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://github.com/syntax-er0/AutoScriptSSH/raw/main/badvpn-udpgw64"
+wget -O /usr/bin/badvpn-udpgw "https://github.com/Karl0sGeek/AutoScriptSSH/raw/main/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -125,7 +125,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 # install squid
 cd
 apt -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/squid3.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
 # setting vnstat
@@ -180,21 +180,21 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 /etc/init.d/stunnel4 restart
 
 #OpenVPN
-wget https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
+wget https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 
 # install fail2ban
 apt -y install fail2ban
 
 # Instal DDOS Flate
 if [ -d '/usr/local/ddos' ]; then
-	echo; echo; echo "Please un-install the previous version first"
+	echo; echo; echo "Desinstale primero la versión anterior."
 	exit 0
 else
 	mkdir /usr/local/ddos
 fi
 clear
-echo; echo 'Installing DOS-Deflate 0.6'; echo
-echo; echo -n 'Downloading source files...'
+echo; echo 'Instalando DOS-Deflate 0.6'; echo
+echo; echo -n 'Descargando archivos fuente...'
 wget -q -O /usr/local/ddos/ddos.conf http://www.inetbase.com/scripts/ddos/ddos.conf
 echo -n '.'
 wget -q -O /usr/local/ddos/LICENSE http://www.inetbase.com/scripts/ddos/LICENSE
@@ -204,10 +204,10 @@ echo -n '.'
 wget -q -O /usr/local/ddos/ddos.sh http://www.inetbase.com/scripts/ddos/ddos.sh
 chmod 0755 /usr/local/ddos/ddos.sh
 cp -s /usr/local/ddos/ddos.sh /usr/local/sbin/ddos
-echo '...done'
+echo '...hecho'
 echo; echo -n 'Creating cron to run script every minute.....(Default setting)'
 /usr/local/ddos/ddos.sh --cron > /dev/null 2>&1
-echo '.....done'
+echo '.....hecho'
 echo; echo 'Installation has completed.'
 echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
@@ -217,13 +217,13 @@ cd
 apt install -y libxml-parser-perl
 
 # banner /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/bannerssh.conf"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/bannerssh.conf"
 echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 #install bbr dan optimasi kernel
-wget https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/bbr.sh && chmod +x bbr.sh && ./bbr.sh
-wget https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+wget https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+wget https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 
 # blockir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -244,25 +244,25 @@ netfilter-persistent reload
 
 # download script
 cd /usr/bin
-wget -O add-host "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/addhost.sh"
-wget -O about "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/about.sh"
-wget -O menu "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/menu.sh"
-wget -O usernew "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/trial.sh"
-wget -O hapus "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/hapus.sh"
-wget -O member "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/member.sh"
-wget -o webmin "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/webmin.sh"
-wget -O delete "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/delete.sh"
-wget -O cek "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/cek.sh"
-wget -O restart "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/restart.sh"
-wget -O speedtest "https://github.com/syntax-er0/AutoScriptSSH/raw/main/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/info.sh"
-wget -O ram "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/ram.sh"
-wget -O renew "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/renew.sh"
-wget -O autokill "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/autokill.sh"
-wget -O ceklim "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/tendang.sh"
-wget -O clear-log "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/clear-log.sh"
+wget -O add-host "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/addhost.sh"
+wget -O about "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/about.sh"
+wget -O menu "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/hapus.sh"
+wget -O member "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/member.sh"
+wget -o webmin "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/webmin.sh"
+wget -O delete "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/delete.sh"
+wget -O cek "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/cek.sh"
+wget -O restart "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/restart.sh"
+wget -O speedtest "https://github.com/Karl0sGeek/AutoScriptSSH/raw/main/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/info.sh"
+wget -O ram "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/ram.sh"
+wget -O renew "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/renew.sh"
+wget -O autokill "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/autokill.sh"
+wget -O ceklim "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/ceklim.sh"
+wget -O tendang "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/tendang.sh"
+wget -O clear-log "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/clear-log.sh"
 
 echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 

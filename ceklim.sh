@@ -4,18 +4,18 @@ echo " "
 echo "===========================================";
 echo " ";
 if [ -e "/root/log-limit.txt" ]; then
-echo "Pengguna Yang Melanggar Batas Maksimum";
-echo "Waktu - Username - Banyak Multilogin"
+echo "Usuarios que violan el límite máximo";
+echo "Hora - Nombre de usuario - Varios inicios de sesión"
 echo "-------------------------------------";
 cat /root/log-limit.txt
 else
-echo " Tidak ada pengguna yang melakukan pelanggaran"
+echo " Ningún usuario está infringiendo"
 echo " "
 echo " atau"
 echo " "
-echo " Skrip User-Limit belum dijalankan"
+echo " Skrip Usuario-El límite no se ha ejecutado"
 fi
 echo " ";
 echo "===========================================";
-echo "By Vaksin";
+echo "By Karlos Geek";
 echo " ";

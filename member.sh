@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "-------------------------------"
-echo "USERNAME          EXP DATE     "
+echo "USUARIO          EXP DATE     "
 echo "-------------------------------"
 while read expired
 do
@@ -12,8 +12,8 @@ do
         printf "%-17s %2s\n" "$AKUN" "$exp"
         fi
 done < /etc/passwd
-JUMLAH="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
+NUMERO="$(awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd | wc -l)"
 echo "-------------------------------"
-echo "Jumlah akun: $JUMLAH user"
+echo "Numero de cuentas: $NUMERO de Usuario"
 echo "-------------------------------"
-echo -e "by Vaksin"
+echo -e "by Karlos Geek"

@@ -4,16 +4,16 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/etc/shadowsocks-libev/akun.conf")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		clear
 		echo ""
-		echo "You have no existing clients!"
+		echo "No tienes clientes existentes!"
 		exit 1
 	fi
 
 	clear
 	echo ""
-	echo " Select the existing client you want to remove"
-	echo " Press CTRL+C to return"
+	echo " Seleccione el cliente existente que desea eliminar"
+	echo " Presione CTRL + C para regresar"
 	echo " ==============================="
-	echo "     No  Expired   User"
+	echo "     Ningún usuario caducado"
 	grep -E "^### " "/etc/shadowsocks-libev/akun.conf" | cut -d ' ' -f 2-3 | nl -s ') '
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
@@ -37,9 +37,9 @@ systemctl disable shadowsocks-libev-server@$user-tls.service
 	rm -f "/etc/shadowsocks-libev/$user-tls.json"
 	rm -f "/etc/shadowsocks-libev/$user-http.json"
 	clear
-	echo " SS OBFS Akun berhasil dihapus"
+	echo " Cuenta SS OBFS eliminada con éxito"
 echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp"
 echo " =========================="
-echo " By Vaksin"
+echo " By Karlos Geek"

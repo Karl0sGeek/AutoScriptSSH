@@ -2,7 +2,7 @@
 # Debian 9 & 10 64bit
 # Ubuntu 18.04 & 20.04 bit
 # Centos 7 & 8 64bit 
-# By Vaksin
+# By Karlos Geek
 # ==================================================
 
 VPN_IPSEC_PSK='vpn'
@@ -14,21 +14,21 @@ source /etc/os-release
 OS=$ID
 ver=$VERSION_ID
 bigecho() { echo; echo "## $1"; echo; }
-bigecho "VPN setup in progress... Please be patient."
+bigecho "Configuración de VPN en curso ... Tenga paciencia."
 
 # Create and change to working dir
 mkdir -p /opt/src
 cd /opt/src
 
-bigecho "Trying to auto discover IP of this server..."
+bigecho "Intentando descubrir automáticamente la IP de este servidor ..."
 PUBLIC_IP=$(wget -qO- ifconfig.co);
 
-bigecho "Installing packages required for the VPN..."
+bigecho "Instalando paquetes necesarios para la VPN ..."
 if [[ ${OS} == "centos" ]]; then
 epel_url="https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E '%{rhel}').noarch.rpm"
 yum -y install epel-release || yum -y install "$epel_url" 
 
-bigecho "Installing packages required for the VPN..."
+bigecho "Instalando paquetes necesarios para la VPN ..."
 
 REPO1='--enablerepo=epel'
 REPO2='--enablerepo=*server-*optional*'
@@ -55,7 +55,7 @@ apt-get -y install libnss3-dev libnspr4-dev pkg-config \
   libcurl4-nss-dev flex bison gcc make libnss3-tools \
   libevent-dev ppp xl2tpd pptpd
 fi
-bigecho "Compiling and installing Libreswan..."
+bigecho "Compilando e instalando Libreswan ..."
 
 SWAN_VER=3.32
 swan_file="libreswan-$SWAN_VER.tar.gz"
@@ -98,7 +98,7 @@ if ! /usr/local/sbin/ipsec --version 2>/dev/null | grep -qF "$SWAN_VER"; then
   exiterr "Libreswan $SWAN_VER failed to build."
 fi
 
-bigecho "Creating VPN configuration..."
+bigecho "Creando configuración de VPN ..."
 
 L2TP_NET=192.168.42.0/24
 L2TP_LOCAL=192.168.42.1
@@ -246,7 +246,7 @@ novjccomp
 nologfd
 END
 
-bigecho "Updating IPTables rules..."
+bigecho "Actualizando las reglas de IPTables ..."
 service fail2ban stop >/dev/null 2>&1
 iptables -t nat -I POSTROUTING -s 192.168.43.0/24 -o $NET_IFACE -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 192.168.42.0/24 -o $NET_IFACE -j MASQUERADE
@@ -261,7 +261,7 @@ netfilter-persistent save
 netfilter-persistent reload
 fi
 
-bigecho "Enabling services on boot..."
+bigecho "Habilitando servicios al arrancar ..."
 systemctl enable xl2tpd
 systemctl enable ipsec
 systemctl enable pptpd
@@ -271,7 +271,7 @@ for svc in fail2ban ipsec xl2tpd; do
   systemctl enable "$svc" 2>/dev/null
 done
 
-bigecho "Starting services..."
+bigecho "Iniciando servicios ..."
 sysctl -e -q -p
 chmod 600 /etc/ipsec.secrets* /etc/ppp/chap-secrets* /etc/ipsec.d/passwd*
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# By Vaksin
+# By Karlos Geek
 # ==================================================
 
 # initialisasi var
@@ -19,7 +19,7 @@ cp /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
 
 # Kemudian edit file variabel easy-rsa
 # nano /etc/openvpn/easy-rsa/vars
-wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/syntax-er0r/AutoScriptSSH/main/vars.conf"
+wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/vars.conf"
 # edit projek export KEY_NAME="vpn"
 # Save dan keluar dari editor
 
@@ -27,7 +27,7 @@ wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/syntax-er0
 openssl dhparam -out /etc/openvpn/dh2048.pem 2048
 
 # install openvpn
-wget -O /etc/openvpn/vpn.zip "https://github.com/syntax-er0r/AutoScriptSSH/raw/main/vpn.zip"
+wget -O /etc/openvpn/vpn.zip "https://github.com/Karl0sGeek/AutoScriptSSH/raw/main/vpn.zip"
 cd /etc/openvpn/
 unzip vpn.zip
 rm -f vpn.zip
@@ -111,7 +111,7 @@ cd clientconfig
 cd /etc/openvpn
 cat > /etc/openvpn/client-udp-1194.ovpn <<-END
 ############## WELCOME TO ###############
-########## WWW.Vaksin.XYZ ###########
+########## WWW.REDESGEEK.COM ###########
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
@@ -132,7 +132,7 @@ sed -i $MYIP2 /etc/openvpn/client-udp-1194.ovpn;
 # Buat config client TCP 1194
 cat > /etc/openvpn/client-tcp-1194.ovpn <<-END
 ############## WELCOME TO ###############
-########## WWW.Vaksin.XYZ ###########
+########## WWW.REDESGEEK.COM ###########
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
@@ -153,7 +153,7 @@ sed -i $MYIP2 /etc/openvpn/client-tcp-1194.ovpn;
 # Buat config client UDP 2200
 cat > /etc/openvpn/client-udp-2200.ovpn <<-END
 ############## WELCOME TO ###############
-########## WWW.Vaksin.XYZ ###########
+########## WWW.REDESGEEK.COM ###########
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
@@ -174,7 +174,7 @@ sed -i $MYIP2 /etc/openvpn/client-udp-2200.ovpn;
 # Buat config client TCP 2200
 cat > /etc/openvpn/client-tcp-2200.ovpn <<-END
 ############## WELCOME TO ###############
-########## WWW.Vaksin.XYZ ###########
+########## WWW.REDESGEEK.COM ###########
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
@@ -195,7 +195,7 @@ sed -i $MYIP2 /etc/openvpn/client-tcp-2200.ovpn;
 # Buat config client SSL
 cat > /etc/openvpn/client-tcp-ssl.ovpn <<-END
 ############## WELCOME TO ###############
-########## WWW.Vaksin.XYZ ###########
+########## WWW.REDESGEEK.COM ###########
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun

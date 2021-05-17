@@ -4,16 +4,16 @@ source /etc/wireguard/params
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		clear
 		echo ""
-		echo "You have no existing clients!"
+		echo "No tienes clientes existentes!"
 		exit 1
 	fi
 
 	clear
 	echo ""
-	echo "Select an existing client that you want to renew"
-	echo " Press CTRL+C to return"
+	echo "Seleccione el cliente existente que desea renovar"
+	echo " Presione CTRL + C para regresar"
 	echo -e "==============================="
-	echo "     No  Expired   User"
+	echo "     Ningún usuario caducado"
 	grep -E "^### Client" "/etc/wireguard/$SERVER_WG_NIC.conf" | cut -d ' ' -f 3-4 | nl -s ') '
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
@@ -34,9 +34,9 @@ exp4=`date -d "$exp3 days" +"%Y-%m-%d"`
 sed -i "s/### Client $user $exp/### Client $user $exp4/g" /etc/wireguard/wg0.conf
 clear
 echo ""
-echo " Akun Wireguard berhasil diperpanjang"
+echo " Cuenta Wireguard renovado con éxito"
 echo " =========================="
 echo " Client Name : $user"
 echo " Expired  On: $exp4"
 echo " =========================="
-echo " By Vaksin"
+echo " By Karlos Geek"

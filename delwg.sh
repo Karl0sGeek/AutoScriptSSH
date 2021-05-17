@@ -4,17 +4,17 @@ source /etc/wireguard/params
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		clear
 		echo ""
-		echo "You have no existing clients!"
+		echo "No tienes clientes existentes!"
 		exit 1
 	fi
 
 	clear
 	echo ""
 	echo ""
-	echo " Select the existing client you want to remove"
-	echo " Press CTRL+C to return"
+	echo " Seleccione el cliente existente que desea eliminar"
+	echo " Presione CTRL + C para regresar"
 	echo " ==============================="
-	echo "     No  Expired   User"
+	echo "     Ningún usuario caducado"
 	grep -E "^### Client" "/etc/wireguard/$SERVER_WG_NIC.conf" | cut -d ' ' -f 3-4 | nl -s ') '
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
@@ -37,9 +37,9 @@ source /etc/wireguard/params
 	# restart wireguard to apply changes
 	systemctl restart "wg-quick@wg0"
 clear
-echo " Wireguard Akun berhasil dihapus"
+echo " Wireguard Cuenta eliminada con éxito"
 echo " =========================="
 echo " Client Name : $user"
 echo " Expired  On : $exp"
 echo " =========================="
-echo " By Vaksin"
+echo " By Karlos Geek"

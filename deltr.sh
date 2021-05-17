@@ -2,16 +2,16 @@
 NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/etc/v2ray/trojan.json")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		echo ""
-		echo "You have no existing clients!"
+		echo "No tienes clientes existentes!"
 		exit 1
 	fi
 
 	clear
 	echo ""
-	echo " Select the existing client you want to remove"
-	echo " Press CTRL+C to return"
+	echo " Seleccione el cliente existente que desea eliminar"
+	echo " Presione CTRL + C para regresar"
 	echo " ==============================="
-	echo "     No  Expired   User"
+	echo "     Ningún usuario caducado"
 	grep -E "^### " "/etc/v2ray/trojan.json" | cut -d ' ' -f 2-3 | nl -s ') '
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
@@ -25,9 +25,9 @@ exp=$(grep -E "^### " "/etc/v2ray/trojan.json" | cut -d ' ' -f 3 | sed -n "${CLI
 sed -i "/^### $user $exp/,/^},{/d" /etc/v2ray/trojan.json
 systemctl restart v2ray@trojan
 clear
-echo " Trojan Akun berhasil dihapus"
+echo " Troyan cuenta eliminado con éxito"
 echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp"
 echo " =========================="
-echo " By Vaksin"
+echo " By Karlos Geek"

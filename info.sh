@@ -2,7 +2,7 @@
 
 clear
 neofetch
-echo -e "by Vaksin"
+echo -e "by Karlos Geek"
 echo "=================================-Autoscript Premium-===========================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "--------------------------------------------------------------------------------" | tee -a log-install.txt
@@ -36,5 +36,5 @@ echo "   - IPv6                    : [OFF]"  | tee -a log-install.txt
 echo "   - Autoreboot On 00.00 GMT +7" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "------------------------------------------VAKSIN------------------------------------------" | tee -a log-install.txt
+echo "--------------------------------------KARLOS GEEK------------------------------------------" | tee -a log-install.txt
 echo ""

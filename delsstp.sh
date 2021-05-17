@@ -2,12 +2,12 @@
 NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/var/lib/premium-script/data-user-sstp")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		echo ""
-		echo "Anda belum memiliki akun!"
+		echo "Aún no tienes una cuenta!"
 		exit 1
 	fi
 
 	echo ""
-	echo "Pilih Password yg akan di hapus"
+	echo "Seleccione la contraseña que se eliminará"
 	
 	grep -E "^### " "/var/lib/premium-script/data-user-sstp" | cut -d ' ' -f 2-3 | nl -s ') '
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do

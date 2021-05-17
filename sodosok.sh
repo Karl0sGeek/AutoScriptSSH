@@ -1,20 +1,20 @@
 #!/bin/bash
-#shadowsocks-libev obfs install by Vaksin
+#shadowsocks-libev obfs install by Karlos Geek
 source /etc/os-release
 OS=$ID
 ver=$VERSION_ID
 
 #Install_Packages
 echo "#############################################"
-echo "Install Paket..."
+echo "Paquete de Instalación..."
 apt-get install --no-install-recommends build-essential autoconf libtool libssl-dev libpcre3-dev libev-dev asciidoc xmlto automake -y
-echo "Install Paket Selesai."
+echo "Instale el Paquete Completo."
 echo "#############################################"
 
 
 #Install_Shadowsocks_libev
 echo "#############################################"
-echo "Install Shadowsocks-libev..."
+echo "Instalar Shadowsocks-libev..."
 apt-get install software-properties-common -y
 if [[ $OS == 'ubuntu' ]]; then
 apt install shadowsocks-libev -y
@@ -32,12 +32,12 @@ apt -t buster-backports install shadowsocks-libev -y
 apt -t buster-backports install simple-obfs -y
 fi
 fi
-echo "Install Shadowsocks-libev Selesai."
+echo "Instale Shadowsocks-libev Hecho."
 echo "#############################################"
 
 #Server konfigurasi
 echo "#############################################"
-echo "Konfigurasi Server."
+echo "Configuración del Servidor."
 cat > /etc/shadowsocks-libev/config.json <<END
 {   
     "server":"0.0.0.0",
@@ -54,14 +54,14 @@ echo "#############################################"
 
 #mulai ~shadowsocks-libev~ server
 echo "#############################################"
-echo "mulai ss server"
+echo "iniciar el servidor ss"
 systemctl enable shadowsocks-libev.service
 systemctl start shadowsocks-libev.service
 echo "#############################################"
 
 #buat client config
 echo "#############################################"
-echo "buat config obfs"
+echo "crear configuración de obfs"
 cat > /etc/shadowsocks-libev.json <<END
 {
     "server":"127.0.0.1",
@@ -82,7 +82,7 @@ echo "#############################################"
 touch /etc/shadowsocks-libev/akun.conf
 
 echo "#############################################"
-echo "Menambahkan Perintah Shadowsocks-libev"
+echo "Se Agregó el Comando Shadowsocks-libev"
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2443:3543 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2443:3543 -j ACCEPT
 ip6tables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2443:3543 -j ACCEPT
@@ -90,11 +90,11 @@ ip6tables -I INPUT -m state --state NEW -m udp -p udp --dport 2443:3543 -j ACCEP
 iptables-save > /etc/iptables.up.rules
 ip6tables-save > /etc/ip6tables.up.rules
 cd /usr/bin
-wget -O addss "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/addss.sh"
-wget -O delss "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/delss.sh"
-wget -O cekss "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/cekss.sh"
-wget -O xp-ss "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/xp-ss.sh"
-wget -O renewss "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/renewss.sh"
+wget -O addss "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/addss.sh"
+wget -O delss "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/delss.sh"
+wget -O cekss "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/cekss.sh"
+wget -O xp-ss "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/xp-ss.sh"
+wget -O renewss "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/renewss.sh"
 chmod +x addss
 chmod +x delss
 chmod +x cekss

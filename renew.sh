@@ -1,13 +1,13 @@
 #!/bin/bash
-# Script by : Vaksin
+# Script by : Karlos Geek
 clear
 echo -e ""
 echo -e "======================================"
 echo -e ""
-echo -e "       AutoScriptVPS by Vaksin    "
+echo -e "       AutoScriptVPS by Karlos Geek    "
 echo -e ""
 echo -e "======================================"
-read -p "         Username       :  " User
+read -p "         Usuario       :  " User
 egrep "^$User" /etc/passwd >/dev/null
 if [ $? -eq 0 ]; then
 read -p "         Day Extend     :  " Days
@@ -24,10 +24,10 @@ clear
 echo -e ""
 echo -e "========================================"
 echo -e ""
-echo -e "    AutoScriptVPS by Vaksin         "
+echo -e "    AutoScriptVPS by Karlos Geek         "
 echo -e ""
-echo -e "    Username        :  $User"
-echo -e "    Days Added      :  $Days Days"
+echo -e "    Usuario         :  $User"
+echo -e "    Days Added      :  $Days Dias"
 echo -e "    Expires on      :  $Expiration_Display"
 echo -e ""
 echo -e "========================================"
@@ -36,9 +36,9 @@ clear
 echo -e ""
 echo -e "========================================"
 echo -e ""
-echo -e "      AutoScriptVPS by Vaksin       "
+echo -e "      AutoScriptVPS by Karlos Geek       "
 echo -e ""
-echo -e "        Username Doesnt Exist           "
+echo -e "        El Usuario no Existe           "
 echo -e ""
 echo -e "========================================"
 fi

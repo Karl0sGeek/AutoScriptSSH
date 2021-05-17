@@ -2,4 +2,4 @@
 clear
 accel-cmd show sessions
 echo ""
-echo "By Vaksin"
+echo "By Karlos Geek"

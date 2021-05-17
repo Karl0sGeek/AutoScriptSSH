@@ -41,7 +41,7 @@ make
 cpack -G DEB
 dpkg -i accel-ppp.deb
 mv /etc/accel-ppp.conf.dist /etc/accel-ppp.conf
-wget -O /etc/accel-ppp.conf "https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/accel.conf"
+wget -O /etc/accel-ppp.conf "https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/accel.conf"
 sed -i $MYIP2 /etc/accel-ppp.conf
 chmod +x /etc/accel-ppp.conf
 systemctl start accel-ppp
@@ -64,10 +64,10 @@ netfilter-persistent save
 netfilter-persistent reload
 
 #input perintah sstp
-wget -O /usr/bin/addsstp https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/addsstp.sh && chmod +x /usr/bin/addsstp
-wget -O /usr/bin/delsstp https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/delsstp.sh && chmod +x /usr/bin/delsstp
-wget -O /usr/bin/ceksstp https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/ceksstp.sh && chmod +x /usr/bin/ceksstp
-wget -O /usr/bin/xp-sstp https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/xp-sstp.sh && chmod +x /usr/bin/xp-sstp
-wget -O /usr/bin/renewsstp https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/renewsstp.sh && chmod +x /usr/bin/renewsstp
+wget -O /usr/bin/addsstp https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/addsstp.sh && chmod +x /usr/bin/addsstp
+wget -O /usr/bin/delsstp https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/delsstp.sh && chmod +x /usr/bin/delsstp
+wget -O /usr/bin/ceksstp https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/ceksstp.sh && chmod +x /usr/bin/ceksstp
+wget -O /usr/bin/xp-sstp https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/xp-sstp.sh && chmod +x /usr/bin/xp-sstp
+wget -O /usr/bin/renewsstp https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/renewsstp.sh && chmod +x /usr/bin/renewsstp
 rm -f /root/sstp.sh
 echo "0 0 * * * root xp-sstp" >> /etc/crontab

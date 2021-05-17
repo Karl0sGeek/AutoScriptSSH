@@ -1,9 +1,9 @@
 if [ "${EUID}" -ne 0 ]; then
-echo "You need to run this script as root"
+echo "Necesita ejecutar este script como root"
 exit 1
 fi
 if [ "$(systemd-detect-virt)" == "openvz" ]; then
-echo "OpenVZ is not supported"
+echo "OpenVZ no es compatible"
 exit 1
 fi
 red='\e[1;31m'
@@ -11,17 +11,17 @@ green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(wget -qO- icanhazip.com);
 echo "Checking VPS"
-IZIN=$( curl https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/ipvps | grep $MYIP )
+IZIN=$( curl https://raw.githubusercontent.com/Karl0sGeek/AutoScriptSSH/main/ipvps | grep $MYIP )
 if [ $MYIP = $IZIN ]; then
-echo -e "${green}Permission Accepted...${NC}"
+echo -e "${green}Permiso Aceptado...${NC}"
 else
-echo -e "${red}Permission Denied!${NC}";
-echo "Only For Premium Users"
+echo -e "${red}Permiso Denegado!${NC}";
+echo "Solo para Usuarios Premium"
 rm -f setup.sh
 exit 0
 fi
 mkdir /var/lib/premium-script;
-echo "Enter the VPS Subdomain Hostname, if not available, please click Enter"
+echo "Ingrese el nombre de host del subdominio VPS, si no está disponible, haga clic en Enter"
 read -p "Hostname / Domain: " host
 echo "IP=$host" >> /var/lib/premium-script/ipvps.conf
 wget https://raw.githubusercontent.com/syntax-er0/AutoScriptSSH/main/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
@@ -43,7 +43,7 @@ history -c
 echo "1.1" > /home/ver
 clear
 echo " "
-echo "Installation has been completed!!"
+echo "Se completó la Instalación!!"
 echo " "
 echo "=================================-Autoscript Premium-===========================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
@@ -78,7 +78,7 @@ echo "   - IPv6                    : [OFF]"  | tee -a log-install.txt
 echo "   - Autoreboot On 00.00 GMT +7" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "------------------------------------------VAKSIN------------------------------------------" | tee -a log-install.txt
+echo "----------------------------------------KARLOS GEEK------------------------------------------" | tee -a log-install.txt
 echo ""
 echo " Reboot 10 Sec"
 sleep 10

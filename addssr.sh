@@ -1,11 +1,11 @@
 #!/bin/bash
 IP=$(wget -qO- icanhazip.com);
-echo "Please enter the username you want to set (do not repeat, does not support Chinese, will be reported incorrect!)"
+echo "Ingrese el nombre de usuario que desea establecer (no repita, no es compatible con chino, se informará como incorrecto!)."
 read -e -p "(Default: ):" ssr_user
 CLIENT_EXISTS=$(grep -w $ssr_user /usr/local/shadowsocksr/akun.conf | wc -l)
 if [[ ${CLIENT_EXISTS} == '1' ]]; then
 echo ""
-echo "A client with the specified name was already created, please choose another name."
+echo "Ya se creó un cliente con el nombre especificado, elija otro nombre."
 exit 1
 fi
 read -p "Expired (days): " masaaktif
@@ -28,7 +28,7 @@ ssr_forbid="bittorrent"
 cd /usr/local/shadowsocksr
 match_add=$(python mujson_mgr.py -a -u "${ssr_user}" -p "${ssr_port}" -k "${ssr_password}" -m "${ssr_method}" -O "${ssr_protocol}" -G "${ssr_protocol_param}" -o "${ssr_obfs}" -s "${ssr_speed_limit_per_con}" -S "${ssr_speed_limit_per_user}" -t "${ssr_transfer}" -f "${ssr_forbid}"|grep -w "add user info")
 cd
-echo -e "${Info} Penambahan user berhasil [username: ${ssr_user}]"
+echo -e "${Info} La adición de usuarios fue exitosa [username: ${ssr_user}]"
 echo -e "### $ssr_user $exp" >> /usr/local/shadowsocksr/akun.conf
 tmp1=$(echo -n "${ssr_password}" | base64 -w0 | sed 's/=//g;s/\//_/g;s/+/-/g')
 SSRobfs=$(echo ${ssr_obfs} | sed 's/_compatible//g')
@@ -50,4 +50,4 @@ echo -e " Expired On    : ${exp} "
 echo "==================================================="
 echo -e " Link SSR      : ${ssr_link}"
 echo "==================================================="
-echo -e " Vaksin"
+echo -e " Karlos Geek"

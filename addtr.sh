@@ -11,7 +11,7 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
 			echo ""
-			echo "A client with the specified name was already created, please choose another name."
+			echo "Ya se creó un cliente con el nombre especificado, elija otro nombre."
 			exit 1
 		fi
 	done
@@ -33,5 +33,5 @@ echo -e "link           : ${trojanlink}"
 echo -e "================================="
 echo -e "Expired On     : $exp"
 echo -e ""
-echo -e "By Vaksin"
+echo -e "By Karlos Geek"
 

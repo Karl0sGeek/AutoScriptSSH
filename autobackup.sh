@@ -11,7 +11,7 @@ fi
 function start() {
 email=$(cat /home/email)
 if [[ "$email" = "" ]]; then
-echo "Please enter your email"
+echo "Por favor introduzca su correo electrónico"
 read -rp "Email: " -e email
 cat <<EOF>>/home/email
 $email
@@ -24,10 +24,10 @@ cat << EOF >> /etc/crontab
 EOF
 service cron restart
 sleep 1
-echo " Please Wait"
+echo " Espere por favor"
 clear
-echo " Autobackup Has Been Started"
-echo " Data Will Be Backed Up Automatically at 00:05 GMT +7"
+echo " Se ha iniciado la copia de seguridad automática"
+echo " Los datos se respaldarán automáticamente at 00:05 GMT +7"
 exit 0
 }
 function stop() {
@@ -36,9 +36,9 @@ sed -i "/^$email/d" /home/email
 sed -i "/^# BEGIN_Backup/,/^# END_Backup/d" /etc/crontab
 service cron restart
 sleep 1
-echo " Please Wait"
+echo " Espere por favor"
 clear
-echo " Autobackup Has Been Stopped"
+echo " Se ha detenido la copia de seguridad automática"
 exit 0
 }
 clear
@@ -56,6 +56,6 @@ elif [[ "$num" = "2" ]]; then
 stop
 else
 clear
-echo " You Entered The Wrong Number"
+echo " Ingresó el número equivocado"
 menu
 fi

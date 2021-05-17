@@ -2,7 +2,7 @@
 IP=$(wget -qO- icanhazip.com);
 date=$(date +"%Y-%m-%d")
 clear
-echo " Enter Your Email To Receive Message"
+echo " Ingrese su correo electrónico para recibir el mensaje"
 read -rp " Email: " -e email
 sleep 1
 echo Membuat Directory
@@ -30,14 +30,14 @@ rclone copy /root/$IP-$date.zip dr:backup/
 url=$(rclone link dr:backup/$IP-$date.zip)
 id=(`echo $url | grep '^https' | cut -d'=' -f2`)
 link="https://drive.google.com/u/4/uc?id=${id}&export=download"
-echo -e "The following is a link to your vps data backup file.
+echo -e "El siguiente es un enlace a su archivo de respaldo de datos vps.
 
 $link
 
-If you want to restore data, please enter the link above.
+Si desea restaurar los datos, ingrese el enlace de arriba.
 
-Thank You For Using Our Services" | mail -s "Backup Data" $email
+Gracias por usar nuestros servicios" | mail -s "Backup Data" $email
 rm -rf /root/backup
 rm -r /root/$IP-$date.zip
-echo "Done"
-echo "Please Check Your Email"
+echo "Hecho"
+echo "Por favor revise su correo electrónico"

@@ -11,7 +11,7 @@ until [[ $VPN_USER =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
 			echo ""
-			echo "Akun sudah ada, silahkan masukkan password lain."
+			echo "La cuenta ya existe, ingrese otra contraseña."
 			exit 1
 		fi
 	done
@@ -39,6 +39,6 @@ Username     : $VPN_USER
 Password     : $VPN_PASSWORD
 Expired On   : $exp
 
-By Vaksin
+By Karlos Geek
 =================================
 EOF

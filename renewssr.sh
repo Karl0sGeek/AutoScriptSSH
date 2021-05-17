@@ -3,14 +3,14 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/usr/local/shadowsocksr/akun.conf")
 	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
 		clear
 		echo ""
-		echo "You have no existing clients!"
+		echo "No tienes clientes existentes!"
 		exit 1
 	fi
 
 	clear
 	echo ""
-	echo "Select the existing client you want to renew"
-	echo " Press CTRL+C to return"
+	echo "Seleccione el cliente existente que desea renovar"
+	echo " Presione CTRL + C para regresar"
 	echo -e "==============================="
 	grep -E "^### " "/usr/local/shadowsocksr/akun.conf" | cut -d ' ' -f 2-3 | nl -s ') '
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
@@ -34,9 +34,9 @@ bln=$(echo "$exp4" | cut -d- -f2)
 sed -i "s/### $user $exp/### $user $exp4/g" /usr/local/shadowsocksr/akun.conf
 clear
 echo ""
-echo " SSR Akun berhasil diperpanjang"
+echo " Cuenta SSR extendida con éxito"
 echo " =========================="
 echo " Client Name : $user"
 echo " Expired On  : $exp4"
 echo " =========================="
-echo " Vaksin"
+echo " Karlos Geek"
