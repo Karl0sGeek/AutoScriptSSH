@@ -3,7 +3,7 @@
 clear
 echo -e ""
 echo -e "=============================-Menu-============================="
-echo -e "* menu         : List of Main Commands  By VAKSIN"
+echo -e "* menu         : List of Main Commands  By KARLOS GEEK"
 echo -e ""
 echo -e "=========================-SSH & OpenVPN-========================"
 echo -e "* usernew      : Buat akun SSH dan OpenVPN"
