@@ -629,6 +629,103 @@ View_Log(){
 	echo && echo -e "${Tip} Click ${Red_font_prefix}Ctrl+C${Font_color_suffix} Stop Displaying logs " && echo
 	tail -f ${ssr_log_file}
 }
+Set_config_connect_verbose_info(){
+	SSR_installation_status
+	[[ ! -e ${jq_file} ]] && echo -e "${Error} JQ解析器 不存在，请检查 !" && exit 1
+	connect_verbose_info=`${jq_file} '.connect_verbose_info' ${config_user_file}`
+	if [[ ${connect_verbose_info} = "0" ]]; then
+		echo && echo -e "当前日志模式: ${Green_font_prefix}简单模式（只输出错误日志）${Font_color_suffix}" && echo
+		echo -e "确定要切换为 ${Green_font_prefix}详细模式（输出详细连接日志+错误日志）${Font_color_suffix}？[y/N]"
+		read -e -p "(Default: n):" connect_verbose_info_ny
+		[[ -z "${connect_verbose_info_ny}" ]] && connect_verbose_info_ny="n"
+		if [[ ${connect_verbose_info_ny} == [Yy] ]]; then
+			ssr_connect_verbose_info="1"
+			Modify_config_connect_verbose_info
+			Restart_SSR
+		else
+			echo && echo "	已取消..." && echo
+		fi
+	else
+		echo && echo -e "当前日志模式: ${Green_font_prefix}详细模式（输出详细连接日志+错误日志）${Font_color_suffix}" && echo
+		echo -e "确定要切换为 ${Green_font_prefix}简单模式（只输出错误日志）${Font_color_suffix}？[y/N]"
+		read -e -p "(Default: n):" connect_verbose_info_ny
+		[[ -z "${connect_verbose_info_ny}" ]] && connect_verbose_info_ny="n"
+		if [[ ${connect_verbose_info_ny} == [Yy] ]]; then
+			ssr_connect_verbose_info="0"
+			Modify_config_connect_verbose_info
+			Restart_SSR
+		else
+			echo && echo "	已取消..." && echo
+		fi
+	fi
+}
+Set_crontab_monitor_ssr(){
+	SSR_installation_status
+	crontab_monitor_ssr_status=$(crontab -l|grep "ssrmu.sh monitor")
+	if [[ -z "${crontab_monitor_ssr_status}" ]]; then
+		echo && echo -e "Current monitoring mode: ${Green_font_prefix}Not monitored${Font_color_suffix}" && echo
+		echo -e "确定要开启为 ${Green_font_prefix}ShadowsocksR服务端运行状态监控${Font_color_suffix} 功能吗？(当进程关闭则自动启动SSR服务端)[Y/n]"
+		read -e -p "(Default: y):" crontab_monitor_ssr_status_ny
+		[[ -z "${crontab_monitor_ssr_status_ny}" ]] && crontab_monitor_ssr_status_ny="y"
+		if [[ ${crontab_monitor_ssr_status_ny} == [Yy] ]]; then
+			crontab_monitor_ssr_cron_start
+		else
+			echo && echo "	已取消..." && echo
+		fi
+	else
+		echo && echo -e "当前监控模式: ${Green_font_prefix}已开启${Font_color_suffix}" && echo
+		echo -e "确定要关闭为 ${Green_font_prefix}ShadowsocksR服务端运行状态监控${Font_color_suffix} 功能吗？(当进程关闭则自动启动SSR服务端)[y/N]"
+		read -e -p "(Default: n):" crontab_monitor_ssr_status_ny
+		[[ -z "${crontab_monitor_ssr_status_ny}" ]] && crontab_monitor_ssr_status_ny="n"
+		if [[ ${crontab_monitor_ssr_status_ny} == [Yy] ]]; then
+			crontab_monitor_ssr_cron_stop
+		else
+			echo && echo "	已取消..." && echo
+		fi
+	fi
+}
+crontab_monitor_ssr(){
+	SSR_installation_status
+	check_pid
+	if [[ -z ${PID} ]]; then
+		echo -e "${Error} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] 检测到 ShadowsocksR服务端 未运行 , 开始启动..." | tee -a ${ssr_log_file}
+		/etc/init.d/ssrmu start
+		sleep 1s
+		check_pid
+		if [[ -z ${PID} ]]; then
+			echo -e "${Error} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksR服务端 启动失败..." | tee -a ${ssr_log_file} && exit 1
+		else
+			echo -e "${Info} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksR服务端 启动成功..." | tee -a ${ssr_log_file} && exit 1
+		fi
+	else
+		echo -e "${Info} [$(date "+%Y-%m-%d %H:%M:%S %u %Z")] ShadowsocksR服务端 进程运行正常..." exit 0
+	fi
+}
+crontab_monitor_ssr_cron_start(){
+	crontab -l > "$file/crontab.bak"
+	sed -i "/ssrmu.sh monitor/d" "$file/crontab.bak"
+	echo -e "\n* * * * * /bin/bash $file/ssrmu.sh monitor" >> "$file/crontab.bak"
+	crontab "$file/crontab.bak"
+	rm -r "$file/crontab.bak"
+	cron_config=$(crontab -l | grep "ssrmu.sh monitor")
+	if [[ -z ${cron_config} ]]; then
+		echo -e "${Error} ShadowsocksR服务端运行状态监控功能 启动失败 !" && exit 1
+	else
+		echo -e "${Info} ShadowsocksR服务端运行状态监控功能 启动成功 !"
+	fi
+}
+crontab_monitor_ssr_cron_stop(){
+	crontab -l > "$file/crontab.bak"
+	sed -i "/ssrmu.sh monitor/d" "$file/crontab.bak"
+	crontab "$file/crontab.bak"
+	rm -r "$file/crontab.bak"
+	cron_config=$(crontab -l | grep "ssrmu.sh monitor")
+	if [[ ! -z ${cron_config} ]]; then
+		echo -e "${Error} ShadowsocksR服务端运行状态监控功能 停止失败 !" && exit 1
+	else
+		echo -e "${Info} ShadowsocksR服务端运行状态监控功能 停止成功 !"
+	fi
+}
 Update_Shell(){
 	echo -e "The current version is [$ {sh_ver}], start checking for the latest version ... "
 	sh_new_ver=$(wget --no-check-certificate -qO- "https://raw.githubusercontent.com/hybtoy/ssrrmu/master/ssrrmu.sh"|grep 'sh_ver="'|awk -F "=" '{print $NF}'|sed 's/\"//g'|head -1) && sh_new_type="github"
